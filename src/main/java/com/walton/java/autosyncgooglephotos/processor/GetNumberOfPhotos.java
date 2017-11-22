@@ -1,7 +1,7 @@
 package com.walton.java.autosyncgooglephotos.processor;
 
-import com.walton.java.accessgoogleservice.module.AlbumInfo;
-import com.walton.java.accessgoogleservice.module.PhotoInfo;
+import com.walton.java.GooglePhotosForJava.model.AlbumInfo;
+import com.walton.java.GooglePhotosForJava.model.PhotoInfo;
 import poisondog.core.Mission;
 
 import java.util.List;
