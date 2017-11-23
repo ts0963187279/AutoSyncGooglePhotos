@@ -15,5 +15,5 @@ dependencies {
     compile group: 'com.google.gdata', name: 'core', version: '1.47.1'
     compile group: 'com.google.apis', name: 'google-api-services-oauth2', version: 'v2-rev129-1.22.0'
     compile 'com.google.apis:google-api-services-drive:v2-rev283-1.23.0'
-    compile project(':AutoSyncGooglePhotos')
+    compile project(':GoogleSynchronizer')
 }
