@@ -1,6 +1,6 @@
 package com.walton.java.autosyncgooglephotos.processor;
 
-import com.walton.java.accessgoogleservice.module.AlbumInfo;
+import com.walton.java.GooglePhotosForJava.model.AlbumInfo;
 import org.junit.Assert;
 import org.junit.Test;
 

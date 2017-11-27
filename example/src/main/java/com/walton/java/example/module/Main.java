@@ -12,7 +12,6 @@ public class Main{
         try {
             ServerSocket serverSocket = new ServerSocket(5566);
             while (true) {
-                System.out.println("waiting for connect......");
                 Socket socket = serverSocket.accept();
                 new SyncGoogleTask(socket).start();
             }
