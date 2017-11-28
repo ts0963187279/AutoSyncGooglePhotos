@@ -7,6 +7,7 @@ import com.walton.java.accessgoogleservice.module.OAuth2Data;
 import com.walton.java.accessgoogleservice.processor.GetAccessToken;
 import com.walton.java.accessgoogleservice.processor.GetGoogleCredential;
 import com.walton.java.accessgoogleservice.processor.GetRefreshToken;
+import com.walton.java.autosyncgooglephotos.model.AccessGoogleData;
 import com.walton.java.autosyncgooglephotos.processor.AnalyzeAccessGoogleData;
 import com.walton.java.socket.processor.GetStringFromClient;
 
@@ -26,19 +27,16 @@ public class SyncGoogleTask extends Thread{
         String refreshToken = null;
         String accessToken;
         System.out.println("connected");
-        ResourceBundle res = ResourceBundle.getBundle("local");
-        String clientId = res.getString("client_Id");
-        String clientSecrets = res.getString("client_Secrets");
-        oAuth2Data.setClientId(clientId);
-        oAuth2Data.setClientSecrets(clientSecrets);
         GetStringFromClient getStringFromClient = null;
         try {
             getStringFromClient = new GetStringFromClient(socket);
-            String accessGoogleData = getStringFromClient.execute(null);
-            List<String> accessGoogleInfoList = new AnalyzeAccessGoogleData().execute(accessGoogleData);
-            oAuth2Data.setUserName(accessGoogleInfoList.get(0));
-            String authCode = accessGoogleInfoList.get(1);
-            oAuth2Data.addScope(accessGoogleInfoList.get(2));
+            String accessGoogleDataString = getStringFromClient.execute(null);
+            AccessGoogleData accessGoogleData = new AnalyzeAccessGoogleData().execute(accessGoogleDataString);
+            oAuth2Data.setClientId(accessGoogleData.getClientID());
+            oAuth2Data.setClientSecrets(accessGoogleData.getClientSecret());
+            oAuth2Data.setUserName(accessGoogleData.getUserName());
+            String authCode = accessGoogleData.getAuthCode();
+            oAuth2Data.addScope(accessGoogleData.getScope());
             GetRefreshToken getRefreshToken = new GetRefreshToken(oAuth2Data);
             refreshToken = getRefreshToken.execute(authCode);
         } catch (IOException e) {

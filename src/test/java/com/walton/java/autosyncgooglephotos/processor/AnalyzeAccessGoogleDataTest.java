@@ -1,5 +1,6 @@
 package com.walton.java.autosyncgooglephotos.processor;
 
+import com.walton.java.autosyncgooglephotos.model.AccessGoogleData;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,12 +11,20 @@ public class AnalyzeAccessGoogleDataTest {
     @Test
     public void testExecute(){
         AnalyzeAccessGoogleData analyzeAccessGoogleData = new AnalyzeAccessGoogleData();
-        String stubAccessGoogleData = "name\nAuthCode\nregisterToken\n";
-        List<String> actual = analyzeAccessGoogleData.execute(stubAccessGoogleData);
-        List<String> expected = new ArrayList<String>();
-        expected.add("name");
-        expected.add("AuthCode");
-        expected.add("registerToken");
-        Assert.assertEquals(expected,actual);
+        String stubAccessGoogleData = "clientId\nclientSecret\nname\nAuthCode\nScope\nregisterToken\n";
+        AccessGoogleData actual = analyzeAccessGoogleData.execute(stubAccessGoogleData);
+        AccessGoogleData expected = new AccessGoogleData();
+        expected.setClientID("clientId");
+        expected.setClientSecret("clientSecret");
+        expected.setUserName("name");
+        expected.setAuthCode("AuthCode");
+        expected.setScope("Scope");
+        expected.setFirebaseToken("registerToken");
+        Assert.assertEquals(expected.getAuthCode(),actual.getAuthCode());
+        Assert.assertEquals(expected.getClientID(),actual.getClientID());
+        Assert.assertEquals(expected.getClientSecret(),actual.getClientSecret());
+        Assert.assertEquals(expected.getFirebaseToken(),actual.getFirebaseToken());
+        Assert.assertEquals(expected.getScope(),actual.getScope());
+        Assert.assertEquals(expected.getUserName(),actual.getUserName());
     }
 }

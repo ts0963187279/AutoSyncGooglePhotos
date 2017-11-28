@@ -1,19 +1,27 @@
 package com.walton.java.autosyncgooglephotos.processor;
 
+import com.walton.java.autosyncgooglephotos.model.AccessGoogleData;
 import poisondog.core.Mission;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AnalyzeAccessGoogleData implements Mission<String> {
-    public List<String> execute(String accessGoogleData){
-        List<String> accessGoogleInfos = new ArrayList<String>(3);
-        for(int i=0;i<accessGoogleData.length();i++){
+    public AccessGoogleData execute(String accessGoogleDataString){
+        AccessGoogleData accessGoogleData = new AccessGoogleData();
+        List<String> accessGoogleInfoList = new ArrayList<String>();
+        for(int i=0;i<accessGoogleDataString.length();i++){
             String accessGoogleInfo = "";
-            for(;accessGoogleData.charAt(i)!='\n';i++)
-                accessGoogleInfo += accessGoogleData.charAt(i);
-            accessGoogleInfos.add(accessGoogleInfo);
+            for(;accessGoogleDataString.charAt(i)!='\n';i++)
+                accessGoogleInfo += accessGoogleDataString.charAt(i);
+            accessGoogleInfoList.add(accessGoogleInfo);
         }
-        return accessGoogleInfos;
+        accessGoogleData.setClientID(accessGoogleInfoList.get(0));
+        accessGoogleData.setClientSecret(accessGoogleInfoList.get(1));
+        accessGoogleData.setUserName(accessGoogleInfoList.get(2));
+        accessGoogleData.setAuthCode(accessGoogleInfoList.get(3));
+        accessGoogleData.setScope(accessGoogleInfoList.get(4));
+        accessGoogleData.setFirebaseToken(accessGoogleInfoList.get(5));
+        return accessGoogleData;
     }
 }
