@@ -16,10 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 public class SyncGoogleDrive implements Mission<Drive>{
-    private SendFirebaseMessage sendFirebaseMessage;
-    public SyncGoogleDrive(SendFirebaseMessage sendFirebaseMessage){
-        this.sendFirebaseMessage = sendFirebaseMessage;
-    }
     @Override
     public Void execute(Drive driveService){
         GetFolderList getFolderList = new GetFolderList();
@@ -35,10 +31,6 @@ public class SyncGoogleDrive implements Mission<Drive>{
         for (DownloadFileInfo downloadFileInfo : downloadFileInfoList) {
             downloadDriveFile.execute(downloadFileInfo);
         }
-        FirebaseMessage firebaseMessage = new FirebaseMessage();
-        firebaseMessage.setBody("GoogleDriveSync done!");
-        firebaseMessage.setTitle("GoogleDriveSync");
-        sendFirebaseMessage.execute(firebaseMessage);
         return null;
     }
 }

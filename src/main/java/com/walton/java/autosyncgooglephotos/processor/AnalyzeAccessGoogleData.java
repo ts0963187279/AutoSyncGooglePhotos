@@ -21,7 +21,6 @@ public class AnalyzeAccessGoogleData implements Mission<String> {
         accessGoogleData.setUserName(accessGoogleInfoList.get(2));
         accessGoogleData.setAuthCode(accessGoogleInfoList.get(3));
         accessGoogleData.setScope(accessGoogleInfoList.get(4));
-        accessGoogleData.setFirebaseToken(accessGoogleInfoList.get(5));
         return accessGoogleData;
     }
 }

@@ -11,7 +11,7 @@ public class AnalyzeAccessGoogleDataTest {
     @Test
     public void testExecute(){
         AnalyzeAccessGoogleData analyzeAccessGoogleData = new AnalyzeAccessGoogleData();
-        String stubAccessGoogleData = "clientId\nclientSecret\nname\nAuthCode\nScope\nregisterToken\n";
+        String stubAccessGoogleData = "clientId\nclientSecret\nname\nAuthCode\nScope\n";
         AccessGoogleData actual = analyzeAccessGoogleData.execute(stubAccessGoogleData);
         AccessGoogleData expected = new AccessGoogleData();
         expected.setClientID("clientId");
@@ -19,11 +19,9 @@ public class AnalyzeAccessGoogleDataTest {
         expected.setUserName("name");
         expected.setAuthCode("AuthCode");
         expected.setScope("Scope");
-        expected.setFirebaseToken("registerToken");
         Assert.assertEquals(expected.getAuthCode(),actual.getAuthCode());
         Assert.assertEquals(expected.getClientID(),actual.getClientID());
         Assert.assertEquals(expected.getClientSecret(),actual.getClientSecret());
-        Assert.assertEquals(expected.getFirebaseToken(),actual.getFirebaseToken());
         Assert.assertEquals(expected.getScope(),actual.getScope());
         Assert.assertEquals(expected.getUserName(),actual.getUserName());
     }

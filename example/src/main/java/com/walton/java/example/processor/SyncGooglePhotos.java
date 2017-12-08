@@ -8,20 +8,14 @@ import poisondog.core.Mission;
 
 public class SyncGooglePhotos implements Mission<PicasawebService> {
     private String userName;
-    private SendFirebaseMessage sendFirebaseMessage;
-    public SyncGooglePhotos(String userName, SendFirebaseMessage sendFirebaseMessage){
+    public SyncGooglePhotos(String userName){
         this.userName = userName;
-        this.sendFirebaseMessage = sendFirebaseMessage;
     }
     @Override
     public Void execute(PicasawebService picasawebService) {
         DownloadImage downloadImage = new DownloadImage(userName);
         downloadImage.setPath("/var/www/web1/web/myskybox/sata_1/Google/GooglePhotos/");
         downloadImage.execute(picasawebService);
-        FirebaseMessage firebaseMessage = new FirebaseMessage();
-        firebaseMessage.setBody("GoogleDriveSync done!");
-        firebaseMessage.setTitle("GoogleDriveSync");
-        sendFirebaseMessage.execute(firebaseMessage);
         return null;
     }
 }
