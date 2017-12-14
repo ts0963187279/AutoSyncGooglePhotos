@@ -7,8 +7,6 @@ import com.walton.java.GoogleDriveForJava.processor.DownloadDriveFile;
 import com.walton.java.GoogleDriveForJava.processor.GetDownloadFileInfoList;
 import com.walton.java.GoogleDriveForJava.processor.GetDriveFilesMap;
 import com.walton.java.GoogleDriveForJava.processor.GetFolderList;
-import com.walton.java.accessgoogleservice.module.FirebaseMessage;
-import com.walton.java.accessgoogleservice.processor.SendFirebaseMessage;
 import poisondog.core.Mission;
 
 import java.util.HashMap;

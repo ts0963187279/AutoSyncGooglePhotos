@@ -2,8 +2,6 @@ package com.walton.java.example.processor;
 
 import com.google.gdata.client.photos.PicasawebService;
 import com.walton.java.GooglePhotosForJava.processor.DownloadImage;
-import com.walton.java.accessgoogleservice.module.FirebaseMessage;
-import com.walton.java.accessgoogleservice.processor.SendFirebaseMessage;
 import poisondog.core.Mission;
 
 public class SyncGooglePhotos implements Mission<PicasawebService> {

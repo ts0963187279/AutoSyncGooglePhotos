@@ -67,5 +67,10 @@ public class SyncGoogleTask extends Thread{
                 e.printStackTrace();
             }
         }
+        try {
+            Runtime.getRuntime().exec("chmod -R 777 /var/www/web1/web/myskybox/sata_1/Google");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
